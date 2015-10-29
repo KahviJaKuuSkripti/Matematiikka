@@ -40,3 +40,11 @@ class extends Lapis.Application
                         raw TehtavaLista "keskivaikeat", .keskivaikeat
                         raw TehtavaLista "vaikeat", .vaikeat
                         raw TehtavaLista "laksyt", .laksyt
+                i class: "selitys helpot"
+                i class: "selitys-teksti", "Helpot"
+                i class: "selitys keskivaikeat"
+                i class: "selitys-teksti", "Keskivaikeat"
+                i class: "selitys vaikeat"
+                i class: "selitys-teksti", "Vaikeat"
+                i class: "selitys laksyt"
+                i class: "selitys-teksti", "Läksyt"

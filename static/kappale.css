@@ -79,3 +79,34 @@ a {
     border-color: #2196F3;
     background-color: #2196F3;
 }
+
+.selitys {
+    width: 1em;
+    height: 1em;
+    display: inline-block;
+    margin-right: 2px;
+    border-radius: 0.5em;
+}
+
+.selitys-teksti {
+    font-size: 1em;
+    margin-left: 2px;
+    margin-right: 8px;
+    font-style: normal;
+}
+
+.selitys.helpot {
+    background-color: #4CAF50;
+}
+
+.selitys.keskivaikeat {
+    background-color: #FF9800;
+}
+
+.selitys.vaikeat {
+    background-color: #F44336;
+}
+
+.selitys.laksyt {
+    background-color: #2196F3;
+}
