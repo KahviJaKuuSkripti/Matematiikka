@@ -21,7 +21,7 @@
             laksyt:                 {119, 126}
         }
     },
-    suoran_yhtalon_ratkaisemation:  {
+    suoran_yhtalon_ratkaisematon:   {
         nimi:                       "1.4, Suoran yhtälőn ratkaiseminen"
         esimerkit:                  {1, 3, 4, 6}
         tehtavat:                   {
