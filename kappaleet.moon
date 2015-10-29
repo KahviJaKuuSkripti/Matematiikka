@@ -22,7 +22,7 @@
         }
     },
     suoran_yhtalon_ratkaisematon:   {
-        nimi:                       "1.4, Suoran yhtälőn ratkaiseminen"
+        nimi:                       "1.4, Suoran yhtälön ratkaisematon muoto"
         esimerkit:                  {1, 3, 4, 6}
         tehtavat:                   {
             helpot:                 {134, 136, 146}
