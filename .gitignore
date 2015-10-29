@@ -3,6 +3,5 @@ nginx.conf
 nginx.conf.compiled
 logs
 *.lua
-*.js
 [._]*.s[a-w][a-z]
 [._]s[a-w][a-z]
