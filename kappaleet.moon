@@ -30,5 +30,6 @@
             vaikeat:                {145, 159, 161}
             laksyt:                 {163, 168}
         }
+        sisalto:                    "<a href='http://archive.geogebra.org/en/upload/files/suomi/erluomaa/ageometria/suoranyhtalo.html'>Interaktiivinen GeoGebra-demo (vaatii Javan)</a>"
     }
 }
