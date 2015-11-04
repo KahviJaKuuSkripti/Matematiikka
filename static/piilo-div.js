@@ -19,7 +19,7 @@ function matriisiAsteet(tr) { // https://css-tricks.com/get-value-of-css-rotatio
     return Math.round(Math.atan2(b, a) * (180/Math.PI));
 }
 
-window.addEventListener("load", function() {
+window.addEventListener("DOMContentLoaded", function() {
     [].forEach.call(document.querySelectorAll(".avain"), function(avain) {
         var piiloDiv = document.querySelector("#" + avain.dataset.piiloDiv);
         var divAnimaatioTila = "sulkeutuu";
@@ -49,6 +49,7 @@ window.addEventListener("load", function() {
                 if (divAnimaatioEteneminen >= aika) { 
                     window.clearInterval(divAnimaatioFunktio);
                     piiloDiv.style.height = parseInt(kevennys(aika, alku, loppu - alku, aika)) + "px";
+                    return;
                 }
                 divAnimaatioEteneminen = divAnimaatioEteneminen + 16;
                 piiloDiv.style.height = parseInt(kevennys(divAnimaatioEteneminen, alku, loppu - alku, aika)) + "px";

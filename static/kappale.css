@@ -44,10 +44,23 @@ a {
     color: #3F51B5;
 }
 
+.material-icons.md-50 {
+    vertical-align: middle;
+    font-size: 100%;
+    line-height: 50px;
+    color: white;
+    background-color: #8BC34A;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    border-radius: 25px;
+}
+
 .tehtava {
     display: inline-block;
     margin-right: 8px;
     width: 50px;
+    position: relative;
     height: 50px;
     color: white;
     vertical-align: middle;

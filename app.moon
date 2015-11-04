@@ -17,7 +17,9 @@ class extends Lapis.Application
             link rel: "stylesheet", href: "https://fonts.googleapis.com/css?family=Roboto"
             link rel: "stylesheet", href: "/static/kappale.css"
             link href: "https://fonts.googleapis.com/icon?family=Material+Icons", rel: "stylesheet" -- Material Design -ikonit
+            script src: "https://cdn.rawgit.com/js-cookie/js-cookie/master/src/js.cookie.js", async: false
             script src: "/static/piilo-div.js"
+            script src: "/static/tehtavat.js"
             h1 class: "kappale-nimi", KappaleData.nimi
             if KappaleData.video then
                 div class: "material-osio sisennys", ->
