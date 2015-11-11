@@ -25,15 +25,29 @@ window.addEventListener("DOMContentLoaded", function() {
         var divAnimaatioTila = "sulkeutuu";
         var divAnimaatioFunktio;
         var divAnimaatioEteneminen = 0;
+        var divAnimaatioRotaatio = 0;
 
         function avaa() {
-            var alkuKokoX = tehtava.querySelector(".tehty") && window.getScrollWidth(tehtava.querySelector(".tehty")) || 0;
-            var alkuKokoY = tehtava.querySelector(".tehty") && window.getScrollHeight(tehtava.querySelector(".tehty")) || 0;
-            var rotAlku = tehtava.querySelector(".tehty") && matriisiAsteet(window.getComputedStyle(tehtava.querySelector(".tehty")).getPropertyValue("transform")) || 0;
-            var alkuX = tehtava.querySelector(".tehty") && parseInt(window.getComputedStyle(tehtava.querySelector(".tehty")).getPropertyValue("left")) || 0;
-            var alkuY = tehtava.querySelector(".tehty") && parseInt(window.getComputedStyle(tehtava.querySelector(".tehty")).getPropertyValue("top")) || 0;
+            divAnimaatioTila = divAnimaatioTila == "avautuu" ? "sulkeutuu" : "avautuu";
+            if (divAnimaatioTila == "avautuu") {
+                var loppuKokoX = 50, loppuKokoY = 50, rotLoppu = 360, aika = 1000;
+                var loppuX = 0, loppuY = 0;
+                if (tehtava.querySelector(".tehty")) {
+                    var alkuX = tehtava.querySelector(".tehty").offsetLeft, alkuY = tehtava.querySelector(".tehty").offsetTop;
+                }
+                else {
+                    var alkuX = 25, alkuY = 25;
+                }
+            }
+            else {
+                var loppuKokoX = 0, loppuKokoY = 0, rotLoppu = 0, aika = 1000;
+                var loppuX = 25, loppuY = 25;
+            }
 
             if (!tehtava.querySelector(".tehty")) {
+                var alkuKokoX = 0;
+                var alkuKokoY = 0;
+                var rotAlku = 0;
                 var tehtyDiv = document.createElement("div");
                 tehtyDiv.className = "tehty material-icons md-50";
                 tehtyDiv.innerText = "check";
@@ -41,17 +55,16 @@ window.addEventListener("DOMContentLoaded", function() {
             }
             else {
                 var tehtyDiv = tehtava.querySelector(".tehty");
-            }
-            divAnimaatioTila = divAnimaatioTila == "avautuu" ? "sulkeutuu" : "avautuu";
+                var alkuKokoX = tehtava.querySelector(".tehty").scrollWidth;
+                var alkuKokoY = tehtava.querySelector(".tehty").scrollWidth;
+                var rotAlku = divAnimaatioRotaatio || 0;
+                var alkuX = tehtava.querySelector(".tehty").offsetLeft;
+                var alkuY = tehtava.querySelector(".tehty").offsetTop;
 
-            if (divAnimaatioTila == "avautuu") {
-                var loppuKokoX = 50, loppuKokoY = 50, rotLoppu = 360, aika = 1000;
-                var loppuX = 0, loppuY = 0;
             }
-            else {
-                var loppuKokoX = 0, loppuKokoY = 0, rotLoppu = 0, aika = 1000;
-                var loppuX = 25, loppuY = 25;
-            }
+            divAnimaatioEteneminen = 0;
+            if (divAnimaatioFunktio) 
+                window.clearInterval(divAnimaatioFunktio);
 
             divAnimaatioFunktio = window.setInterval(function() {
                 if (divAnimaatioEteneminen >= aika) {
@@ -61,19 +74,35 @@ window.addEventListener("DOMContentLoaded", function() {
                     tehtyDiv.style.width = parseInt(kevennys(aika, alkuKokoX, loppuKokoX - alkuKokoX, aika)) + "px";
                     tehtyDiv.style.top = parseInt(kevennys(aika, alkuY, loppuY - alkuY, aika)) + "px";
                     tehtyDiv.style.left = parseInt(kevennys(aika, alkuX, loppuX - alkuX, aika)) + "px";
+                    tehtyDiv.style.transform = "rotate(" + parseInt(kevennys(aika, rotAlku, rotLoppu - rotAlku, aika)) + "DEG)";
                     return;
                 }
                 divAnimaatioEteneminen = divAnimaatioEteneminen + 16;
                 tehtyDiv.style.height = parseInt(kevennys(divAnimaatioEteneminen, alkuKokoY, loppuKokoY - alkuKokoY, aika)) + "px";
                 tehtyDiv.style.width = parseInt(kevennys(divAnimaatioEteneminen, alkuKokoX, loppuKokoX - alkuKokoX, aika)) + "px";
-                tehtyDiv.style.transform = "rotate(" + parseInt(kevennys(divAnimaatioEteneminen, rotAlku, rotLoppu - rotAlku, aika)) + "DEG)";
+                divAnimaatioRotaatio = parseInt(kevennys(divAnimaatioEteneminen, rotAlku, rotLoppu - rotAlku, aika));
+                tehtyDiv.style.transform = "rotate(" + divAnimaatioRotaatio + "DEG)"
                 tehtyDiv.style.top = parseInt(kevennys(divAnimaatioEteneminen, alkuY, loppuY - alkuY, aika)) + "px";
                 tehtyDiv.style.left = parseInt(kevennys(divAnimaatioEteneminen, alkuX, loppuX - alkuX, aika)) + "px";
+                tehtyDiv.style.lineHeight = parseInt(kevennys(divAnimaatioEteneminen, alkuKokoY, loppuKokoY - alkuKokoY, aika)) + "px";
+                tehtyDiv.style.fontSize = parseInt(kevennys(divAnimaatioEteneminen, alkuKokoY, loppuKokoY - alkuKokoY, aika)) * .5 + "px";
             }, 16);
         }
 
         if (evasteet.indexOf(parseInt(tehtava.innerText)) > -1) {
             avaa();
         }
+
+        tehtava.addEventListener("click", function() {
+            avaa();
+            if (evasteet.indexOf(parseInt(tehtava.innerText)) > -1) {
+                evasteet.splice(evasteet.indexOf(parseInt(tehtava.innerText)), 1);
+            }
+            else {
+                evasteet.push(parseInt(tehtava.innerText));
+            }
+            Cookies.remove("tehdyt");
+            Cookies.set("tehdyt", evasteet);
+        }, true);
     });
 });

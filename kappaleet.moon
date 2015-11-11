@@ -1,6 +1,7 @@
 {
     riippuvuus_koordinaatistossa:   {
-        nimi:                       "1.2, Riippuvuus koordinaatistossa"
+        numero:                     "1.2"
+        nimi:                       "Riippuvuus koordinaatistossa"
         video:                      "AQfPeCZNyKo"
         esimerkit:                  {1, 2, 4}
         tehtavat:                   {
@@ -11,7 +12,8 @@
        }
     },
     suoran_yhtalo:                  {
-        nimi:                       "1.3, Suoran yhtälö"
+        numero:                     "1.3"
+        nimi:                       "Suoran yhtälö"
         video:                      "I4BZhyVBJF0?t=46s"
         esimerkit:                  {2, 3, 5, 6}
         tehtavat:                   {
@@ -22,7 +24,8 @@
         }
     },
     suoran_yhtalon_ratkaisematon:   {
-        nimi:                       "1.4, Suoran yhtälön ratkaisematon muoto"
+        numero:                     "1.4"
+        nimi:                       "Suoran yhtälön ratkaisematon muoto"
         esimerkit:                  {1, 3, 4, 6}
         tehtavat:                   {
             helpot:                 {134, 136, 146}

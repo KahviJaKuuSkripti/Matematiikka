@@ -9,7 +9,18 @@ TehtavaLista = (VaikeusAste, TehtavaLista) ->
 
 class extends Lapis.Application
     "/": =>
-        "Welcome to Lapis #{require "lapis.version"}!"
+        @html ->
+            meta charset: "utf-8"
+            link rel: "stylesheet", href: "https://fonts.googleapis.com/css?family=Roboto"
+            link rel: "stylesheet", href: "/static/lista.css"
+            h1 "Suoran yhtälö"
+            h2 "Kappaleet"
+
+            for KappaleNimi, KappaleData in pairs Kappaleet
+                a href: "/kappale/" .. KappaleData.numero .. "/" .. KappaleNimi, ->
+                    b KappaleData.numero
+                    text " - " .. KappaleData.nimi
+                br!
     "/kappale/:numero/:nimi": =>
         KappaleData = Kappaleet[@params.nimi]
         @html ->
@@ -20,7 +31,7 @@ class extends Lapis.Application
             script src: "https://cdn.rawgit.com/js-cookie/js-cookie/master/src/js.cookie.js", async: false
             script src: "/static/piilo-div.js"
             script src: "/static/tehtavat.js"
-            h1 class: "kappale-nimi", KappaleData.nimi
+            h1 class: "kappale-nimi", KappaleData.numero .. ", " .. KappaleData.nimi
             if KappaleData.video then
                 div class: "material-osio sisennys", ->
                     a class: "avain", href: "#", ["data-piilo-div"]: "video", ->
@@ -50,3 +61,5 @@ class extends Lapis.Application
                 i class: "selitys-teksti", "Vaikeat"
                 i class: "selitys laksyt"
                 i class: "selitys-teksti", "Läksyt"
+            p ->
+                a href: "/", "Takaisin listaan"
